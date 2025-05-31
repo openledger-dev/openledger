@@ -1,0 +1,23 @@
+{
+  "name": "hardhat-project",
+  "scripts": {
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "deploy:hardhat": "hardhat ignition deploy ignition/modules/deployOPEN.js",
+    "deploy:sepolia": "hardhat ignition deploy ignition/modules/deployOPEN.js --network sepolia",
+    "deploy:mainnet": "hardhat ignition deploy ignition/modules/deployOPEN.js --network mainnet",
+    "compile": "hardhat compile",
+    "clean": "hardhat clean",
+    "lint": "solhint 'contracts/**/*.sol'",
+    "lint:fix": "solhint 'contracts/**/*.sol' --fix"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.14",
+    "@openzeppelin/contracts": "^5.3.0",
+    "dotenv": "^16.5.0",
+    "hardhat": "^2.24.1",
+    "solhint": "^5.1.0",
+    "solidity-coverage": "^0.8.16"
+  }
+}
