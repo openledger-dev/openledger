@@ -8,7 +8,7 @@ import {ERC20Burnable} from "@openzeppelin/contracts/token/ERC20/extensions/ERC2
 /**
  * @title Open Token
  * @dev Implementation of the Open Token with burning capability
- * @custom:security-contact security@Open.example.com
+ * @custom:security-contact security@openledger.xyz
  */
 contract Open is ERC20, ERC20Burnable {
     /**
