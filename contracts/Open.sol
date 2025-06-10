@@ -14,16 +14,16 @@ contract Open is ERC20, ERC20Burnable {
     /**
      * @notice ERC20 Name of the token: Open
      * @dev ERC20 function name() public view returns (string)
-     * @dev Field is declared public: getter name() is created when compiled,
-     *      it returns the name of the token.
+     * @dev This internal constant is used to initialize the token name;
+     *      the public name() function is inherited from ERC20.
      */
     string internal constant NAME = "Open";
 
     /**
      * @notice ERC20 Symbol of the token: OPEN
      * @dev ERC20 function symbol() public view returns (string)
-     * @dev Field is declared public: getter symbol() is created when compiled,
-     *      it returns the symbol of the token
+     * @dev This internal constant is used to initialize the token symbol;
+     *      the public symbol() function is inherited from ERC20.
      */
     string internal constant SYMBOL = "OPEN";
 
