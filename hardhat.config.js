@@ -3,49 +3,97 @@ require('solidity-coverage')
 require('@nomicfoundation/hardhat-verify')
 require('dotenv').config()
 
-const MAINNET_RPC_URL = process.env.MAINNET_RPC_URL || ''
-const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || ''
+// RPCs must be defined in .env for the networks you want to use
+const RPC_URL_OPSEPOLIA = process.env.SEPOLIA_RPC_URL
+const OPEN_RPC_URL = process.env.OPEN_RPC_URL
 const PRIVATE_KEY = process.env.PRIVATE_KEY || '0x1111111111111111111111111111111111111111111111111111111111111111'
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ''
+const SCAN_API_KEY_OPN = process.env.SCAN_API_KEY_OPN || 'DUMMY_KEY' // Fallback for verification
+const SCAN_API_KEY_SEPOLIA = process.env.SCAN_API_KEY_SEPOLIA
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: {
-    version: '0.8.27',
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200,
+    compilers: [
+      {
+        version: "0.8.27",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
       },
-    },
+      {
+        version: "0.6.12",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+            {
+        version: "0.5.17",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1000,
+          },
+        },
+      },
+    ],
   },
   networks: {
-    hardhat: {},
     localhost: {
-      url: 'http://127.0.0.1:8545',
+      url: "http://127.0.0.1:8545",
+      chainId: 31337, // hardhat
     },
-    mainnet: {
-      url: MAINNET_RPC_URL,
+    opSepolia: {
+      url: RPC_URL_OPSEPOLIA,
       accounts: [PRIVATE_KEY],
-      chainId: 1,
     },
-    sepolia: {
-      url: SEPOLIA_RPC_URL,
+    'openledger-testnet': {
+      url: OPEN_RPC_URL,
       accounts: [PRIVATE_KEY],
-      chainId: 11155111,
+      //  accounts: {
+      //   mnemonic: MNEMONIC,
+      //   initialIndex: 0, // Optional: specify the initial index for HD wallet
+      //   count: 25, // Optional: number of accounts to derive
+      //   path: "m/44'/60'/0'/0", // Optional: HD derivation path
+      //   }    
     },
   },
   etherscan: {
     apiKey: {
-      mainnet: ETHERSCAN_API_KEY,
-      sepolia: ETHERSCAN_API_KEY,
+      'openledger-testnet': SCAN_API_KEY_OPN,
+      'OP Sepolia': SCAN_API_KEY_SEPOLIA
     },
+    customChains: [
+      {
+        network: "openledger-testnet",
+        chainId: 161201,
+        urls: {
+          apiURL: "https://scantn.openledger.xyz:443/api",
+          browserURL: "https://scantn.openledger.xyz:443"
+        }
+      },
+      {
+        network: "OP Sepolia",
+        chainId: 11155420,
+        urls: {
+          apiURL: "https://api-sepolia-optimism.etherscan.io/api",
+          browserURL: "https://sepolia-optimism.etherscan.io",
+        },
+      }
+    ]
   },
   gasReporter: {
     enabled: true,
     currency: 'USD',
     outputFile: 'gas-report.txt',
     noColors: true,
+    showTimeSpent: true,
+    excludeContracts: ["BaseWETH.sol", "ERC20Bank.sol","ReentrancyAttacker.sol","ReentrancyAttackerGOpen.sol","ReentrancyAttackerGWithdrwal.sol"]
   },
   paths: {
     sources: './contracts',
