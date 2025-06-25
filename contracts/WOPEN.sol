@@ -24,9 +24,9 @@
 pragma solidity 0.6.12;
 
 contract WOPEN {
-    string public name     = "Wrapped Open";
-    string public symbol   = "WOPEN";
-    uint8  public decimals = 18;
+    string public  name     = "Wrapped Open";
+    string public  symbol   = "WOPEN";
+    uint8  public  decimals = 18;
 
     event  Approval(address indexed src, address indexed guy, uint wad);
     event  Transfer(address indexed src, address indexed dst, uint wad);
@@ -51,7 +51,8 @@ contract WOPEN {
     function withdraw(uint wad) public {
         require(balanceOf[msg.sender] >= wad);
         balanceOf[msg.sender] -= wad;
-        msg.sender.transfer(wad);
+        (bool success, ) = payable(msg.sender).call{value: wad}("");
+        require(success, "Failed to send native currency");
         emit Withdrawal(msg.sender, wad);
     }
 
