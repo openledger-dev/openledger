@@ -24,9 +24,9 @@
 pragma solidity 0.6.12;
 
 contract WOPEN {
-    string public  name     = "Wrapped Open";
-    string public  symbol   = "WOPEN";
-    uint8  public  decimals = 18;
+    string public constant name     = "Wrapped Open";
+    string public constant symbol   = "WOPEN";
+    uint8  public constant decimals = 18;
 
     event  Approval(address indexed src, address indexed guy, uint wad);
     event  Transfer(address indexed src, address indexed dst, uint wad);
