@@ -20,6 +20,13 @@ This repository contains the core smart contracts for the Openledger ecosystem, 
 - Allows secure wrapping and unwrapping of OPN tokens
 - Protects against common attack vectors with comprehensive security measures
 
+### OpenLedgerGovernor.sol (Governance Contract)
+- Core on-chain governance contract for protocol upgrades and parameter changes
+- Built on OpenZeppelin Governor framework with timelock and role-based access control
+- Manages proposal creation, voting, queuing, and execution with transparent lifecycle
+- Enforces proposal threshold, voting delay, voting period, quorum, and timelock delay
+- Integrates with GOpen token for voting power and supports vote delegation
+- Comprehensive test suite ensures security, correctness, and resilience
 
 ### WOpen.sol (WOPEN Wrapped Ether-Compatible Token)
 - Implementation of a wrapped token with deposit and withdrawal capabilities
@@ -50,6 +57,7 @@ npx hardhat test
 npx hardhat ignition deploy ignition/modules/deployOPEN.js --network sepolia
 npx hardhat ignition deploy ignition/modules/deployGOPEN.js --network openledger-testnet
 npx hardhat ignition deploy ignition/modules/deployWOPEN.js --network openledger-testnet
+npx hardhat ignition deploy ignition/modules/deployGovernor.js --network openledger-testnet
 ```
 
 # list networks
@@ -69,3 +77,4 @@ For detailed documentation:
 - [Open Token Documentation](./docs/open.md)
 - [WOPEN Token Documentation](./docs/wOpen.md)
 - [GOpen Token Documentation](./docs/gOpen.md)
+- [Governor Documentation](./docs/governance.md)
