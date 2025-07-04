@@ -2,13 +2,19 @@ require('@nomicfoundation/hardhat-toolbox')
 require('solidity-coverage')
 require('@nomicfoundation/hardhat-verify')
 require('dotenv').config()
+const { vars } = require("hardhat/config");
 
 // RPCs must be defined in .env for the networks you want to use
-const RPC_URL_OPSEPOLIA = process.env.SEPOLIA_RPC_URL
+const RPC_URL_SEPOLIA = process.env.SEPOLIA_RPC_URL
 const OPEN_RPC_URL = process.env.OPEN_RPC_URL
-const PRIVATE_KEY = process.env.PRIVATE_KEY || '0x1111111111111111111111111111111111111111111111111111111111111111'
 const SCAN_API_KEY_OPN = process.env.SCAN_API_KEY_OPN || 'DUMMY_KEY' // Fallback for verification
 const SCAN_API_KEY_SEPOLIA = process.env.SCAN_API_KEY_SEPOLIA
+
+// Mainnet  var set.
+const RPC_URL_ETHEREUM = `https://eth-mainnet.g.alchemy.com/v2/${vars.get("RPC_KEY_ETHEREUM")}`
+const SCAN_API_KEY_ETHEREUM = vars.get("SCAN_API_KEY_ETHEREUM");
+const PRIVATE_KEY = vars.get("OPEN_DEPLOYER");
+
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -48,8 +54,12 @@ module.exports = {
       url: "http://127.0.0.1:8545",
       chainId: 31337, // hardhat
     },
-    opSepolia: {
-      url: RPC_URL_OPSEPOLIA,
+    sepolia: {
+      url: RPC_URL_SEPOLIA,
+      accounts: [PRIVATE_KEY],
+    },
+    Ethereum: {
+      url: RPC_URL_ETHEREUM,
       accounts: [PRIVATE_KEY],
     },
     'openledger-testnet': {
@@ -66,7 +76,8 @@ module.exports = {
   etherscan: {
     apiKey: {
       'openledger-testnet': SCAN_API_KEY_OPN,
-      'OP Sepolia': SCAN_API_KEY_SEPOLIA
+      'sepolia': SCAN_API_KEY_SEPOLIA,
+      'mainnet': SCAN_API_KEY_ETHEREUM
     },
     customChains: [
       {
@@ -76,14 +87,6 @@ module.exports = {
           apiURL: "https://scantn.openledger.xyz:443/api",
           browserURL: "https://scantn.openledger.xyz:443"
         }
-      },
-      {
-        network: "OP Sepolia",
-        chainId: 11155420,
-        urls: {
-          apiURL: "https://api-sepolia-optimism.etherscan.io/api",
-          browserURL: "https://sepolia-optimism.etherscan.io",
-        },
       }
     ]
   },
