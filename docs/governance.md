@@ -26,24 +26,24 @@ OpenLedger’s governance is based on the OpenZeppelin Governor framework, exten
 ### 1. Proposal Creation
 
 - Any address holding at least the **proposal threshold** of GOpen tokens can create a proposal.
-- **Proposal Threshold:** 100 GOPEN
+- **Proposal Threshold:** 10,000 GOPEN
 - Proposals specify actions to be executed by the protocol if approved.
 
 ### 2. Voting
 
 - **Voting Delay:** 1 day after proposal creation before voting starts.
-- **Voting Period:** 2 weeks for token holders to cast votes.
+- **Voting Period:** 1 weeks for token holders to cast votes.
 - Each GOpen token equals one vote; voting power can be delegated.
 - Votes are tracked and checkpointed for transparency.
 
 ### 3. Quorum and Approval
 
-- **Quorum:** 25% of total GOpen supply must participate for a proposal to be valid.
+- **Quorum:** 5% of total GOpen supply must participate for a proposal to be valid.
 - Proposals pass if they receive more "For" than "Against" votes and meet quorum.
 
 ### 4. Timelock and Execution
 
-- **Timelock Delay:** 1 day after proposal approval before execution.
+- **Timelock Delay:** 1 week after proposal approval before execution.
 - Only proposals that pass all checks and delays are executed by the Timelock Controller.
 - Timelock ensures time for review and potential intervention before changes are applied.
 
@@ -75,11 +75,11 @@ Proposals transition through the following states:
 
 | Parameter            | Value                | Description                                 |
 |----------------------|----------------------|---------------------------------------------|
-| Voting Period        | 2 weeks              | Duration for voting on proposals            |
+| Voting Period        | 1 weeks              | Duration for voting on proposals            |
 | Voting Delay         | 1 day                | Delay before voting starts                  |
-| Timelock Delay       | 1 day                | Delay before execution after approval       |
-| Proposal Threshold   | 100 GOPEN            | Minimum tokens to create a proposal         |
-| Quorum               | 25%                  | Minimum participation for proposal validity |
+| Timelock Delay       | 1 week               | Delay before execution after approval       |
+| Proposal Threshold   | 10,000 GOPEN         | Minimum tokens to create a proposal         |
+| Quorum               | 5%                   | Minimum participation for proposal validity |
 
 ---
 

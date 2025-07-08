@@ -1,7 +1,7 @@
 const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
 module.exports = buildModule("GovernanceModule", (m) => {
-  const minDelay = 3600; // 1 week
+  const minDelay = 604800; // 1 week
   const admin = m.getAccount(1);
   const proposers = [m.getAccount(2)];
   const executors = [m.getAccount(4)];
