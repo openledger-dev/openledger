@@ -13,7 +13,8 @@ const SCAN_API_KEY_SEPOLIA = process.env.SCAN_API_KEY_SEPOLIA
 // Mainnet  var set.
 const RPC_URL_ETHEREUM = `https://eth-mainnet.g.alchemy.com/v2/${vars.get("RPC_KEY_ETHEREUM")}`
 const SCAN_API_KEY_ETHEREUM = vars.get("SCAN_API_KEY_ETHEREUM");
-const PRIVATE_KEY = vars.get("OPEN_DEPLOYER");
+const PRIVATE_KEY =  process.env.PRIVATE_KEY || '0x1111111111111111111111111111111111111111111111111111111111111111'
+//vars.get("OPEN_DEPLOYER")
 
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -53,6 +54,12 @@ module.exports = {
     localhost: {
       url: "http://127.0.0.1:8545",
       chainId: 31337, // hardhat
+    },
+    hardhat: {
+      accounts: {
+        count: 20,
+        accountsBalance: "1000000000000000000000000" // 1M ETH
+      }
     },
     sepolia: {
       url: RPC_URL_SEPOLIA,

@@ -38,8 +38,8 @@ describe("Proposal Threshold Setting", function () {
   });
 
   async function setupVotingPower() {
-    const depositAmount = ethers.parseEther("101");
-    await gOpenToken.connect(proposer).deposit({ value: depositAmount });
+    const depositAmount = ethers.parseEther("1000");
+    await gOpenToken.connect(proposer).deposit({ value: ethers.parseEther("10000") });
     await gOpenToken.connect(voter1).deposit({ value: depositAmount });
     await gOpenToken.connect(voter2).deposit({ value: depositAmount });
 
@@ -143,6 +143,6 @@ describe("Proposal Threshold Setting", function () {
           updatedThreshold
         )} GOPEN`
       );
-    });
-  });
+     });
+   });
 });

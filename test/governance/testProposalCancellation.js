@@ -21,7 +21,7 @@ describe("Proposal Cancellation", function () {
     gOpenToken = deployment.gOpenToken;
     proposer = deployment.proposer;
     voter1 = deployment.voter1;
-    const proposerAmount = ethers.parseEther("150"); // Above 100 threshold
+    const proposerAmount = ethers.parseEther("15000"); // Above 10000 threshold
     await gOpenToken.connect(proposer).deposit({ value: proposerAmount });
     await gOpenToken.connect(proposer).delegate(proposer.address);
 

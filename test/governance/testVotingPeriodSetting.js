@@ -33,7 +33,7 @@ describe("Voting Period Setting", function () {
   });
 
   async function setupVotingPower() {
-    const depositAmount = ethers.parseEther("101");
+    const depositAmount = ethers.parseEther("10001");
     await gOpenToken.connect(proposer).deposit({ value: depositAmount });
     await gOpenToken.connect(voter1).deposit({ value: depositAmount });
     await gOpenToken.connect(voter2).deposit({ value: depositAmount });

@@ -50,20 +50,20 @@ describe("Social Consensus Proposals", function () {
   async function setupVotingPower() {
     // Reduced amounts to prevent fund exhaustion
     // Give proposer enough tokens to create proposals (1000+ GOPEN)
-    const proposerAmount = ethers.parseEther("101");
+    const proposerAmount = ethers.parseEther("10001");
     await gOpenToken.connect(proposer).deposit({ value: proposerAmount });
     await gOpenToken.connect(proposer).delegate(proposer.address);
 
     // Give voters smaller amounts for testing
-    const voter1Amount = ethers.parseEther("80");
+    const voter1Amount = ethers.parseEther("8000");
     await gOpenToken.connect(voter1).deposit({ value: voter1Amount });
     await gOpenToken.connect(voter1).delegate(voter1.address);
 
-    const voter2Amount = ethers.parseEther("60");
+    const voter2Amount = ethers.parseEther("6000");
     await gOpenToken.connect(voter2).deposit({ value: voter2Amount });
     await gOpenToken.connect(voter2).delegate(voter2.address);
 
-    const voter3Amount = ethers.parseEther("40");
+    const voter3Amount = ethers.parseEther("4000");
     await gOpenToken.connect(voter3).deposit({ value: voter3Amount });
     await gOpenToken.connect(voter3).delegate(voter3.address);
 
@@ -146,7 +146,7 @@ describe("Social Consensus Proposals", function () {
       // Verify token transfer happened
       const treasuryBalanceAfter = await gOpenToken.balanceOf(treasury.address);
       const timelockBalanceAfter = await gOpenToken.balanceOf(timelock.target);
-
+ 
       expect(treasuryBalanceAfter - treasuryBalanceBefore).to.equal(
         transferAmount
       );

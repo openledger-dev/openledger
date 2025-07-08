@@ -27,7 +27,7 @@ describe("OpenLedgerGovernor", function () {
 
   describe("Deployment", function () {
     it("Should set the right name", async function () {
-      expect(await openLedgerGovernor.name()).to.equal("OpenLedger");
+      expect(await openLedgerGovernor.name()).to.equal("OpenLedgerGovernor");
     });
 
     it("Should set the right voting period", async function () {

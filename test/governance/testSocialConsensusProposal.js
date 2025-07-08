@@ -58,19 +58,19 @@ describe("Social Consensus Proposals", function () {
   });
 
   async function setupVotingPower() {
-    const proposerAmount = ethers.parseEther("200");
+    const proposerAmount = ethers.parseEther("20000");
     await gOpenToken.connect(proposer).deposit({ value: proposerAmount });
     await gOpenToken.connect(proposer).delegate(proposer.address);
 
-    const voter1Amount = ethers.parseEther("80");
+    const voter1Amount = ethers.parseEther("1800");
     await gOpenToken.connect(voter1).deposit({ value: voter1Amount });
     await gOpenToken.connect(voter1).delegate(voter1.address);
 
-    const voter2Amount = ethers.parseEther("60");
+    const voter2Amount = ethers.parseEther("6000");
     await gOpenToken.connect(voter2).deposit({ value: voter2Amount });
     await gOpenToken.connect(voter2).delegate(voter2.address);
 
-    const voter3Amount = ethers.parseEther("40");
+    const voter3Amount = ethers.parseEther("4000");
     await gOpenToken.connect(voter3).deposit({ value: voter3Amount });
     await gOpenToken.connect(voter3).delegate(voter3.address);
 
@@ -162,9 +162,9 @@ describe("Social Consensus Proposals", function () {
 
       // Check vote counts
       const votes = await openLedgerGovernor.proposalVotes(proposalId);
-      expect(votes.forVotes).to.equal(ethers.parseEther("80")); // voter1
-      expect(votes.againstVotes).to.equal(ethers.parseEther("60")); // voter2
-      expect(votes.abstainVotes).to.equal(ethers.parseEther("40")); // voter3
+      expect(votes.forVotes).to.equal(ethers.parseEther("1800")); // voter1
+      expect(votes.againstVotes).to.equal(ethers.parseEther("6000")); // voter2
+      expect(votes.abstainVotes).to.equal(ethers.parseEther("4000")); // voter3
     });
   });
 });

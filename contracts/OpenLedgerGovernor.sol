@@ -30,10 +30,10 @@ import {TimelockController} from "@openzeppelin/contracts/governance/TimelockCon
 
 contract OpenLedgerGovernor is Governor, GovernorSettings, GovernorCountingSimple, GovernorStorage, GovernorVotes, GovernorVotesQuorumFraction, GovernorTimelockControl {
     constructor(IVotes _token, TimelockController _timelock)
-        Governor("OpenLedger")
-        GovernorSettings(1 days, 2 weeks, 100e18)
+        Governor("OpenLedgerGovernor")
+        GovernorSettings(1 days, 1 weeks, 10000e18)
         GovernorVotes(_token)
-        GovernorVotesQuorumFraction(25)
+        GovernorVotesQuorumFraction(5)
         GovernorTimelockControl(_timelock)
     {}
 
