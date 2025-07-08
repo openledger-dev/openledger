@@ -1,16 +1,15 @@
 const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
 module.exports = buildModule("GovernanceModule", (m) => {
-  const minDelay = 3600;
-  const proposers = [];
-  const executors = [];
-  const holder = m.getAccount(0);
+  const minDelay = 3600; // 1 week
   const admin = m.getAccount(1);
+  const proposers = [m.getAccount(2)];
+  const executors = [m.getAccount(4)];
 
   const myToken = m.contract('GOPEN', []);
   const timelock = m.contract(
     "TimelockController",
-    [minDelay, [], [], admin],
+    [minDelay, proposers, executors, admin],
     {},
   );
   const govern = m.contract(
