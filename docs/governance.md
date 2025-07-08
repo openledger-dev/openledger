@@ -138,7 +138,7 @@ These tests ensure the correctness and resilience of the governance system.
 - `contracts/OpenLedgerGovernor.sol` — Core governance contract
 - `test/governance/` — Governance test suite
 - `docs/gOpen.md` — GOpen governance token details
-- OpenZeppelin Governor documentation: https://docs.openzeppelin.com/contracts/4.x/governance
+- OpenZeppelin Governor documentation: https://docs.openzeppelin.com/contracts/5.x/governance
 
 ---
 
